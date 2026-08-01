@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+description: >-
+  Results of probing the /.well-known/ discovery surface for the Sonos hosts in
+  apis.yml (api.ws.sonos.com control base, api.sonos.com login service,
+  developer.sonos.com, docs.sonos.com, www.sonos.com). Status is the HTTP code
+  observed at fetch time. No real, correctly-typed discovery document was found:
+  the Control API OAuth endpoints are documented directly rather than via an
+  RFC 8414 / OIDC discovery document, and developer.sonos.com/.well-known/*
+  redirects to a Salesforce login shell (recorded present-but-not-a-document).
+hosts:
+- host: https://api.sonos.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+- host: https://api.ws.sonos.com
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 403
+  - path: /.well-known/oauth-authorization-server
+    status: 403
+- host: https://developer.sonos.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    type: text/html
+    note: Redirects to a Salesforce login shell, not a real RFC 9116 security.txt; not saved.
+- host: https://www.sonos.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 403
+    note: Bot-blocked (Cloudflare 403); no security.txt confirmed.
+- host: https://docs.sonos.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

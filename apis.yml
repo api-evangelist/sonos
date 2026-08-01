@@ -1,27 +1,136 @@
 aid: sonos
 name: Sonos
-description: 'Sonos is a company surfaced as a portfolio company of redpoint-ventures and added to the
-  API Evangelist network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the
-  enrichment pipeline.'
+description: >-
+  Sonos is a consumer audio company whose wireless home-sound systems are
+  controlled programmatically through the Sonos Control API — a cloud-based
+  REST API that lets third-party integrations discover a household's players
+  and groups and drive playback, volume, grouping, favorites, playlists, home
+  theater options, audio clips, and cloud-queue sessions. The API authenticates
+  with OAuth 2.0 (authorization code grant) using the single
+  playback-control-all scope, is organized into per-resource namespaces
+  (households, groups, groupVolume, playback, playbackMetadata, playbackSession,
+  playerVolume, favorites, playlists, audioClip, homeTheater), and delivers
+  real-time state through an event-subscription (webhook callback) model.
 url: https://raw.githubusercontent.com/api-evangelist/sonos/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - redpoint-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: has-public-api
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Consumer
-apis: []
+- Audio
+- Music
+- Smart Home
+- IoT
+- Streaming
+- Speakers
+- Home Automation
+- Voice
+image: https://www.sonos.com/apple-touch-icon.png
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- name: Sonos Control API
+  description: >-
+    Cloud-based REST API for controlling Sonos players and groups: playback,
+    volume, grouping, favorites, playlists, home theater, audio clips, and
+    cloud-queue playback sessions, with OAuth 2.0 auth and event subscriptions.
+  humanURL: https://docs.sonos.com/reference
+  baseURL: https://api.ws.sonos.com/control/api/v1
+  tags:
+  - Audio
+  - Music
+  - Playback
+  - Smart Home
+  properties:
+  - type: APIReference
+    url: https://docs.sonos.com/reference
+  - type: Documentation
+    url: https://docs.sonos.com/docs
+  - type: GettingStarted
+    url: https://docs.sonos.com/docs/authorize
+  - type: Authentication
+    url: authentication/sonos-authentication.yml
+  - type: OAuthScopes
+    url: scopes/sonos-scopes.yml
+  - type: Conventions
+    url: conventions/sonos-conventions.yml
+  - type: Webhooks
+    url: asyncapi/sonos-events-webhooks.yml
+  - type: ErrorCatalog
+    url: errors/sonos-problem-types.yml
+  - type: DataModel
+    url: data-model/sonos-data-model.yml
+  - type: MCPServer
+    url: mcp/sonos-mcp.yml
+  - type: AgentSkill
+    url: skills/_index.yml
 common:
 - type: Website
   url: https://www.sonos.com/
+- type: DeveloperPortal
+  url: https://developer.sonos.com/
+- type: Documentation
+  url: https://docs.sonos.com/docs
+- type: APIReference
+  url: https://docs.sonos.com/reference
+- type: GettingStarted
+  url: https://docs.sonos.com/docs/authorize
+- type: SignUp
+  url: https://developer.sonos.com/
+- type: Support
+  url: https://support.sonos.com/
+- type: GitHubOrganization
+  url: https://github.com/sonos
+- type: StatusPage
+  url: https://status.sonos.com/
+- type: Lifecycle
+  url: lifecycle/sonos-lifecycle.yml
+- type: Authentication
+  url: authentication/sonos-authentication.yml
+- type: OAuthScopes
+  url: scopes/sonos-scopes.yml
+- type: Conventions
+  url: conventions/sonos-conventions.yml
+- type: Webhooks
+  url: asyncapi/sonos-events-webhooks.yml
+- type: WellKnown
+  url: well-known/sonos-well-known.yml
+- type: Conformance
+  url: conformance/sonos-conformance.yml
+- type: ErrorCatalog
+  url: errors/sonos-problem-types.yml
+- type: DataModel
+  url: data-model/sonos-data-model.yml
+- type: MCPServer
+  url: mcp/sonos-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: DomainSecurity
+  url: security/sonos-domain-security.yml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1

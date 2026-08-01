@@ -1,0 +1,61 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sonos.com/reference/control-api
+description: >-
+  Entity-relationship model of the Sonos Control API, derived from the public
+  reference namespaces and their id parameters (householdId, groupId, playerId,
+  sessionId). A household contains players; players are combined into groups;
+  playback, volume, metadata, favorites, playlists, and sessions hang off groups
+  and players.
+entities:
+- name: Household
+  id: householdId
+  namespace: households
+  description: A registered Sonos system tied to a user account; the top-level container.
+- name: Group
+  id: groupId
+  namespace: groups
+  description: One or more players playing in sync; the unit playback commands target.
+- name: Player
+  id: playerId
+  namespace: (referenced across namespaces)
+  description: An individual Sonos device (speaker/component).
+- name: PlaybackSession
+  id: sessionId
+  namespace: playbackSession
+  description: A cloud-queue playback session bound to a group.
+- name: Favorite
+  namespace: favorites
+  description: A saved Sonos favorite at the household level.
+- name: Playlist
+  namespace: playlists
+  description: A Sonos playlist at the household level.
+relationships:
+- from: Household
+  to: Player
+  kind: has_many
+  via: householdId
+- from: Household
+  to: Group
+  kind: has_many
+  via: householdId
+- from: Group
+  to: Player
+  kind: has_many
+  via: groupId
+- from: PlaybackSession
+  to: Group
+  kind: belongs_to
+  via: groupId
+- from: Favorite
+  to: Household
+  kind: belongs_to
+  via: householdId
+- from: Playlist
+  to: Household
+  kind: belongs_to
+  via: householdId
+- from: Group
+  to: PlaybackSession
+  kind: has_many
+  via: groupId

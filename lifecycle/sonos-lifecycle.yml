@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sonos.com/reference/about-control-api
+description: >-
+  Versioning, status, and support surface for the Sonos Control API. The Control
+  API is served under a URI-path version (/control/api/v1); the OAuth login
+  service is versioned independently (/login/v3). Sonos operates a public status
+  page for its cloud services.
+versioning:
+  scheme: uri-path
+  current: v1
+  login_service: v3
+  docs: https://docs.sonos.com/reference/about-control-api
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No formal deprecation/sunset-header policy is published in the Control API reference.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.sonos.com/
+support: https://support.sonos.com/
+deprecated_operations: []

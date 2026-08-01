@@ -1,0 +1,44 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sonos.com/reference/control-api
+format: sonos-global-error
+description: >-
+  The Sonos Control API returns errors as an HTTP status plus a JSON body with
+  an "errorCode" string and an optional "reason". The reference documents a set
+  of global error codes shared across namespaces, plus namespace-specific error
+  objects (playbackError, sessionError). This catalog captures the envelope and
+  the commonly documented global error codes; the authoritative registry is the
+  Control API reference. Not RFC 9457 (no application/problem+json).
+envelope:
+  fields:
+  - errorCode
+  - reason
+  http_status_carried: true
+global_errors:
+- errorCode: ERROR_INVALID_PARAMETER
+  meaning: A parameter value is invalid or out of range.
+- errorCode: ERROR_MISSING_PARAMETERS
+  meaning: A required parameter was not supplied.
+- errorCode: ERROR_INVALID_OBJECT_ID
+  meaning: The householdId, groupId, playerId, or sessionId does not exist.
+- errorCode: ERROR_UNSUPPORTED_NAMESPACE
+  meaning: The target does not support the requested namespace.
+- errorCode: ERROR_UNSUPPORTED_COMMAND
+  meaning: The target does not support the requested command.
+- errorCode: ERROR_COMMAND_FAILED
+  meaning: The command was understood but could not be completed.
+- errorCode: ERROR_NOT_CAPABLE
+  meaning: The player/group cannot perform the requested action in its current state.
+- errorCode: ERROR_REQUEST_TIMEOUT
+  meaning: The command timed out before completing.
+- errorCode: ERROR_RESOURCE_GONE
+  meaning: The addressed group or session no longer exists.
+- errorCode: ERROR_BUSY
+  meaning: The player/group is busy and cannot accept the command now.
+namespace_error_objects:
+- name: playbackError
+  source: https://docs.sonos.com/reference/playback-playbackerror
+- name: sessionError
+  source: https://docs.sonos.com/reference/playbacksession-sessionerror
+- name: globalError-reason
+  source: https://docs.sonos.com/reference/reason-parameter

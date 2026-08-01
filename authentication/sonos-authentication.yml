@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sonos.com/docs/authorize
+description: >-
+  The Sonos Control API authenticates third-party integrations with OAuth 2.0
+  (RFC 6749) using the authorization code grant. The integration redirects the
+  user to the Sonos login service, receives an authorization code, then
+  exchanges it for an access token and refresh token. Access tokens are sent as
+  a Bearer token on every Control API request to api.ws.sonos.com. Confirmed
+  live: the authorize and token endpoints return HTTP 400 to unparameterised
+  requests (present), and api.ws.sonos.com/control/api/v1/households returns 401
+  without a token.
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  token_delivery: bearer-header
+schemes:
+- name: SonosOAuth
+  type: oauth2
+  description: >-
+    OAuth 2.0 authorization code grant. Single scope: playback-control-all.
+    Access tokens are short-lived and refreshed with the refresh token via the
+    token endpoint.
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.sonos.com/login/v3/oauth
+    tokenUrl: https://api.sonos.com/login/v3/oauth/access
+    refreshUrl: https://api.sonos.com/login/v3/oauth/access
+    scopes:
+    - scope: playback-control-all
+      description: Control access to a household's Sonos players and groups.
+  sources:
+  - https://docs.sonos.com/docs/authorize
+  - https://docs.sonos.com/reference/create-authorization-code
+  - https://docs.sonos.com/reference/createtoken
+  - https://docs.sonos.com/reference/refreshtoken

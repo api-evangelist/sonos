@@ -1,0 +1,71 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sonos.com/reference/about-control-api
+description: >-
+  Cross-cutting request/response conventions for the Sonos Control API, captured
+  from the public reference. The API is organized into per-resource namespaces
+  addressed by household, group, player, or session id; commands are HTTP
+  methods against those resources; and state is delivered asynchronously through
+  an event-subscription (webhook callback) model rather than polling.
+authentication:
+  style: oauth2-bearer
+  detail: >-
+    OAuth 2.0 authorization code grant; access token sent as
+    "Authorization: Bearer <token>". See authentication/sonos-authentication.yml.
+base_url: https://api.ws.sonos.com/control/api/v1
+resource_model:
+  addressing: >-
+    Requests target a namespace command scoped to an id — householdId, groupId,
+    playerId, or sessionId (e.g. /groups/{groupId}/playback/play).
+  namespaces:
+  - households
+  - groups
+  - groupVolume
+  - playback
+  - playbackMetadata
+  - playbackSession
+  - playerVolume
+  - favorites
+  - playlists
+  - audioClip
+  - homeTheater
+  - musicServiceAccounts
+content_type: application/json
+eventing:
+  style: subscription-webhook
+  detail: >-
+    Clients call the subscribe command on a namespace (scoped to a household,
+    group, player, or session) to register a callback URL; Sonos then POSTs
+    event bodies to that URL. Events identify themselves via the
+    X-Sonos-Namespace and X-Sonos-Type headers. Unsubscribe stops delivery.
+    See asyncapi/sonos-events-webhooks.yml.
+  headers:
+  - X-Sonos-Namespace
+  - X-Sonos-Type
+  - X-Sonos-Target-Id
+idempotency:
+  documented: false
+  note: >-
+    Sonos does not document an idempotency-key header. Many commands are
+    naturally idempotent (setVolume, pause, setMute), but no dedup contract is
+    published, so no Idempotency pointer is asserted.
+error_envelope:
+  style: sonos-global-error
+  detail: >-
+    Errors return an HTTP status plus a JSON body with an errorCode string and
+    an optional reason. See errors/sonos-problem-types.yml.
+versioning:
+  scheme: uri-path
+  current: v1
+  note: >-
+    Control API commands are served under /control/api/v1; the OAuth login
+    service is versioned separately at /login/v3.
+rate_limiting:
+  documented: false
+  note: Sonos does not publish explicit rate-limit numbers in the Control API reference.
+related:
+- authentication/sonos-authentication.yml
+- scopes/sonos-scopes.yml
+- errors/sonos-problem-types.yml
+- lifecycle/sonos-lifecycle.yml
+- asyncapi/sonos-events-webhooks.yml

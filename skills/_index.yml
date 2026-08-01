@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: generated
+description: >-
+  Packaged Agent Skills for the Sonos Control API. Each skill is grounded in
+  real operationIds from the public reference (docs.sonos.com/reference) and the
+  OAuth 2.0 auth model. Sonos publishes no AGENTS.md or skill files, so these
+  are generated from the confirmed operation catalog.
+skills:
+- file: sonos-control-playback.md
+  name: Control playback on a Sonos group
+  api: https://docs.sonos.com/reference
+  operations: [getHouseholds, getGroups, getPlaybackStatus, play, pause, togglePlayPause, skipToNextTrack, setPlayModes]
+- file: sonos-play-favorite.md
+  name: Play a favorite or playlist on Sonos
+  api: https://docs.sonos.com/reference
+  operations: [getHouseholds, getGroups, getFavorites, loadFavorite, getPlaylists, loadPlaylist]
+- file: sonos-audio-clip.md
+  name: Announce an audio clip on a Sonos player
+  api: https://docs.sonos.com/reference
+  operations: [getHouseholds, getGroups, loadAudioClip]

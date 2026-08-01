@@ -1,0 +1,33 @@
+generated: '2026-07-21'
+method: derived
+source: https://docs.sonos.com/docs/authorize
+description: >-
+  Cross-cutting standards the Sonos Control API conforms to, derived from the
+  public reference and confirmed live endpoints. Sonos publishes no formal
+  compliance-program page (no SOC 2 / ISO / PCI certifications for the developer
+  platform were found), so no Compliance pointer is asserted.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    OAuth 2.0 authorization code grant; authorize (api.sonos.com/login/v3/oauth)
+    and token (/login/v3/oauth/access) endpoints confirmed live.
+- id: rfc6749-oauth2
+  conforms: true
+  evidence: Docs cite the OAuth 2.0 RFC (RFC 6749) for the authorization flow.
+- id: oidc
+  conforms: false
+  evidence: No OpenID Connect discovery document or id_token flow published.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    Errors use a Sonos-specific globalError envelope (errorCode + reason), not
+    application/problem+json.
+- id: webhooks-subscriptions
+  conforms: true
+  evidence: >-
+    Namespace subscribe/unsubscribe commands register HTTP callback URLs for
+    event delivery.
+- id: asyncapi
+  conforms: false
+  evidence: Event surface documented as prose/webhooks; no AsyncAPI spec published.

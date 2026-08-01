@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sonos.com/docs/authorize
+docs: https://docs.sonos.com/docs/authorize
+description: >-
+  The Sonos Control API defines a single OAuth 2.0 scope. It is requested in the
+  authorize step and grants control over all players and groups in the
+  authenticated user's household(s).
+schemes:
+- name: SonosOAuth
+  source: https://docs.sonos.com/docs/authorize
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.sonos.com/login/v3/oauth
+    tokenUrl: https://api.sonos.com/login/v3/oauth/access
+scopes:
+- scope: playback-control-all
+  description: >-
+    Full control access to the household's Sonos system: read household/group
+    state and drive playback, volume, grouping, favorites, playlists, home
+    theater, audio clips, and cloud-queue sessions.
+  flows: [authorizationCode]
+  sources: [https://docs.sonos.com/docs/authorize]

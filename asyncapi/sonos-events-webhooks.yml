@@ -1,0 +1,57 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.sonos.com/docs/subscribe
+spec_type: Webhooks
+description: >-
+  The Sonos Control API delivers real-time state through an event-subscription
+  model. A client calls the subscribe command on a namespace (scoped to a
+  household, group, player, or session) with a registered callback URL; Sonos
+  then POSTs event bodies to that URL as state changes. Events carry
+  X-Sonos-Namespace and X-Sonos-Type headers. This is a webhook/event surface,
+  not an AsyncAPI document (Sonos publishes no AsyncAPI spec).
+delivery:
+  transport: http-callback
+  method: POST
+  headers:
+  - X-Sonos-Namespace
+  - X-Sonos-Type
+  - X-Sonos-Target-Id
+  subscribe_command: subscribe
+  unsubscribe_command: unsubscribe
+events:
+- namespace: groups
+  type: groups
+  subscribe: groups:subscribe (householdId)
+  description: Household group configuration changed (players regrouped/renamed).
+- namespace: playback
+  type: playbackStatus
+  subscribe: playback:subscribe (groupId)
+  description: Group playback state changed (playing, paused, buffering, idle).
+- namespace: playbackMetadata
+  type: metadataStatus
+  subscribe: playbackMetadata:subscribe (groupId)
+  description: Currently-playing track/metadata for a group changed.
+- namespace: groupVolume
+  type: groupVolume
+  subscribe: groupVolume:subscribe (groupId)
+  description: Group volume or mute state changed.
+- namespace: playerVolume
+  type: playerVolume
+  subscribe: playerVolume:subscribe (playerId)
+  description: Individual player volume or mute state changed.
+- namespace: playbackSession
+  type: sessionStatus
+  subscribe: playbackSession:subscribe (sessionId)
+  description: Cloud-queue playback session state changed.
+- namespace: favorites
+  type: favoritesUpdated
+  subscribe: favorites:subscribe (householdId)
+  description: The household's Sonos favorites list changed.
+- namespace: playlists
+  type: playlistsUpdated
+  subscribe: playlists:subscribe (householdId)
+  description: The household's Sonos playlists changed.
+- namespace: audioClip
+  type: audioClipStatus
+  subscribe: audioClip:subscribe (playerId)
+  description: Audio clip (notification/announcement) playback state changed.

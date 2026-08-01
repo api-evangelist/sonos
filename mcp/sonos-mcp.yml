@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: https://docs.sonos.com/reference/control-api
+description: >-
+  Sonos does not operate an official hosted MCP server (none found in the docs,
+  the @modelcontextprotocol registry, or the sonos GitHub org). This is a
+  CANDIDATE tool list derived from the confirmed Control API operations, one
+  tool per marquee operationId, as a starting point for an MCP wrapper. Auth
+  would proxy the Control API's OAuth 2.0 (playback-control-all).
+server:
+  name: sonos-control
+  transport: http
+  auth: oauth2
+tools:
+- name: get_households
+  description: List the households available to the authenticated user.
+  source_operation: households#getHouseholds
+- name: get_groups
+  description: List the groups and players in a household.
+  source_operation: groups#getGroups
+- name: get_playback_status
+  description: Get the playback state of a group.
+  source_operation: playback#getPlaybackStatus
+- name: play
+  description: Start or resume playback on a group.
+  source_operation: playback#play
+- name: pause
+  description: Pause playback on a group.
+  source_operation: playback#pause
+- name: skip_to_next_track
+  description: Skip to the next track on a group.
+  source_operation: playback#skipToNextTrack
+- name: set_group_volume
+  description: Set the volume for a group.
+  source_operation: groupVolume#setVolume
+- name: set_player_volume
+  description: Set the volume for an individual player.
+  source_operation: playerVolume#setVolume
+- name: get_favorites
+  description: List a household's Sonos favorites.
+  source_operation: favorites#getFavorites
+- name: load_favorite
+  description: Play a favorite on a group.
+  source_operation: favorites#loadFavorite
+- name: load_audio_clip
+  description: Play an audio clip (notification) on a player.
+  source_operation: audioClip#loadAudioClip
+- name: create_group
+  description: Combine players into a new group.
+  source_operation: groups#createGroup
