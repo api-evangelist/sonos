@@ -2,12 +2,10 @@ generated: '2026-07-21'
 method: derived
 status: candidate
 source: https://docs.sonos.com/reference/control-api
-description: >-
-  Sonos does not operate an official hosted MCP server (none found in the docs,
-  the @modelcontextprotocol registry, or the sonos GitHub org). This is a
-  CANDIDATE tool list derived from the confirmed Control API operations, one
-  tool per marquee operationId, as a starting point for an MCP wrapper. Auth
-  would proxy the Control API's OAuth 2.0 (playback-control-all).
+description: Sonos does not operate an official hosted MCP server (none found in the docs, the @modelcontextprotocol
+  registry, or the sonos GitHub org). This is a CANDIDATE tool list derived from the confirmed Control
+  API operations, one tool per marquee operationId, as a starting point for an MCP wrapper. Auth would
+  proxy the Control API's OAuth 2.0 (playback-control-all).
 server:
   name: sonos-control
   transport: http
@@ -49,3 +47,9 @@ tools:
 - name: create_group
   description: Combine players into a new group.
   source_operation: groups#createGroup
+deployment:
+  mode: none
+  verified: derived
+  tools: 12
+  checked: '2026-08-12'
+  source: catalog MCP census
